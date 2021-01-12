@@ -4,7 +4,7 @@
     <title><?php echo $titulo ?></title>
 </head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+    <script src="assets/js/jquery.js"></script>
 <body>
 <?php echo $this->include('view_menu'); ?>
 <div class="card" style="margin-top: 56px">
@@ -38,7 +38,7 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="control-group">
-                        <label class="control-label">Responsável do pagamento</label>
+                        <label class="control-label">Favorecido</label>
                         <div class="controls">
                             <input size="150" class="form-control" name="nm_responsavel" type="text" required="" value="<?php echo isset($contas) ? $contas->nm_responsavel : '' ?>">
                         </div>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="control-group">
-                        <label class="control-label">Descrição do pagamento</label>
+                        <label class="control-label">Descrição</label>
                         <div class="controls">
                             <input size="150" class="form-control" name="ds_pagamento" type="text" value="<?php echo isset($contas) ? $contas->ds_pagamento : '' ?>">
                         </div>
@@ -69,21 +69,13 @@
                     <div class="control-group">
                         <label class="control-label">Vencimento</label>
                         <div class="controls">
-                            <input size="50" class="form-control" name="dt_vencimento" type="date" value="<?php echo isset($contas) ? $contas->dt_vencimento : '' ?>">  
+                            <input size="50" class="form-control" name="dt_vencimento" type="date" required="" value="<?php echo isset($contas) ? $contas->dt_vencimento : '' ?>">  
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="control-group">
-                        <label class="control-label">Forma de pagamento</label>
-                        <div class="controls">
-                            <input size="50" class="form-control" name="ds_formaPagamento" type="text" value="<?php echo isset($contas) ? $contas->ds_formaPagamento : '' ?>">  
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="control-group">
-                        <label class="control-label">Conta bancária</label>
+                        <label class="control-label">Pix</label>
                         <div class="controls">
                             <input size="50" class="form-control" name="ds_contaBancaria" type="text" value="<?php echo isset($contas) ? $contas->ds_contaBancaria : '' ?>">  
                         </div>
@@ -91,28 +83,10 @@
                 </div>
                 <div class="col-sm-2">
                     <div class="control-group">
-                        <label class="control-label">Valor bruto</label>
+                        <label class="control-label">Comissão</label>
                         <div class="controls">
-                            <input size="50" class="form-control" step="0.01" name="nr_valorBruto" type="number" value="<?php echo isset($contas) ? $contas->nr_valorBruto : '' ?>">  
+                            <input size="50" class="form-control" step="0.01" name="nr_comissao" type="number" value="<?php echo isset($contas) ? $contas->nr_comissao : '' ?>">  
                         </div>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="control-group">
-                        <label class="control-label">Juros</label><small> - (Informe % ou R$)</small>
-                        <div class="controls">
-                            <input size="50" class="form-control" name="nr_juros" type="text" value="<?php echo isset($contas) ? $contas->nr_juros : '' ?>">  
-                        </div>
-                        
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="control-group">
-                        <label class="control-label">Desconto</label><small> - (Informe % ou R$)</small>
-                        <div class="controls">
-                            <input size="50" class="form-control" name="nr_desconto" type="text" value="<?php echo isset($contas) ? $contas->nr_desconto : '' ?>">  
-                        </div>
-                        
                     </div>
                 </div>
                 <div class="col-sm-2">
@@ -155,6 +129,59 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="col-sm-12" style="magin: 12px">
+                    <hr><p><h6>Defina a forma de pagamento</h6></p>
+                </div>
+                
+                <div class="col-sm-3">
+                    <div class="control-group">
+                        <label class="control-label">Forma de pagamento</label>
+                        <div class="controls">
+                        <select class="custom-select mr-sm-2" name="ds_formaPagamento" id="formaPagamento" onchange="verifica()">  
+                            <option value=""></option>
+                            <option value="a vista">À vista</option>
+                            <option value="parcelado">Parcelado</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="control-group">
+                        <label class="control-label">Valor líquido</label>
+                        <div class="controls">
+                            <input size="50" class="form-control" id="valorBruto" disabled="true" step="0.01" name="nr_valorParcela" type="number" value="<?php echo isset($contas) ? $contas->nr_valorBruto : '' ?>">  
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="control-group">
+                        <label class="control-label">Valor da parcela</label>
+                        <div class="controls">
+                            <input size="50" class="form-control" id="valorParcela" disabled="true" step="0.01" name="nr_valorParcela" type="number" value="<?php echo isset($contas) ? $contas->nr_valorParcela : '' ?>">  
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="control-group">
+                        <label class="control-label">Quantidade de parcela</label>
+                        <div class="controls">
+                            <input size="50" class="form-control" id="qtParcela" min="1" disabled="true" name="nr_qtParcela" type="number" value="<?php echo isset($contas) ? $contas->nr_qtParcela : '' ?>">  
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="control-group">
+                        <label class="control-label">Dias entre parcelas</label>
+                        <div class="controls">
+                            <input size="50" class="form-control" id="diferencaDias" type="number" disabled="true" name="nr_diferencaDias" value="<?php echo isset($contas) ? $contas->nr_diferencaDias : '' ?>">  
+                        </div>
+                        
+                    </div>
+                </div>
+
                 <div class="col-sm-3">
                     <div class="control-group">
                         <label class="control-label">Data de registro</label>
@@ -175,4 +202,37 @@
     </div>
 </div>
 </body>
+<script>
+
+    function verifica(value){
+        
+	var input = document.getElementById("formaPagamento").value;
+	console.log(input);
+    	switch (input) {
+        case 'a vista':
+        document.getElementById("valorBruto").disabled = false;
+        document.getElementById("valorParcela").disabled = true;
+        document.getElementById("diferencaDias").disabled = true;
+        document.getElementById("qtParcela").disabled = true;
+        document.getElementById("valorParcela").value = '';
+        document.getElementById("qtParcela").value = '';
+        document.getElementById("diferencaDias").value = '';
+        break;
+        case 'parcelado':
+        document.getElementById("diferencaDias").disabled = false;
+        document.getElementById("valorBruto").disabled = true;
+        document.getElementById("valorBruto").value = '';
+        document.getElementById("valorParcela").disabled = false;
+        document.getElementById("qtParcela").disabled = false;
+        break;
+        default:
+        document.getElementById("valorParcela").disabled = true;
+        document.getElementById("qtParcela").disabled = true;
+        document.getElementById("valorBruto").disabled = true;
+        document.getElementById("diferencaDias").disabled = true;
+        break;
+        }
+    }
+    
+</script>
 </html>

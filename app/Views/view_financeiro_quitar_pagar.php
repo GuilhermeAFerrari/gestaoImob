@@ -9,7 +9,7 @@
         <div clas="span10 offset1">
           <div class="card">
             <div class="card-header">
-                <h3 class="well">Excluir</h3>
+                <h3 class="well">Quitar conta</h3>
             </div>
 
             <div class="card-body">
@@ -17,20 +17,24 @@
                     <div class="row align-items-start">
                         <div class="col-sm-12">
                           <div class="form actions">
-                            <a href="<?php echo base_url('cadastros-pessoas-deletar/' . $id_pessoa) ?>" type="button" class="btn btn-danger" style="margin-left:20px; margin-bottom:10px;">Excluir</a>
-                            <a href="<?php echo base_url('principal') ?>" type="button" class="btn btn-secondary" style="margin-left:20px; margin-bottom:10px;">Voltar</a>
+                            <a href="<?php echo base_url('financeiro-quitar-pagar/' . $id_contaPagar) ?>" type="button" class="btn btn-danger" style="margin-left:20px; margin-bottom:10px;">Quitar</a>
+                            <a href="<?php echo base_url('financeiro-pagamentos-listar') ?>" type="button" class="btn btn-secondary" style="margin-left:20px; margin-bottom:10px;">Voltar</a>
                           </div>
                             <br/>
-                            <input type="hidden" name="id" value="<?php echo $id_pessoa;?>" />
+                            <input type="hidden" name="id" value="<?php echo $id_contaPagar;?>" />
                             <div class="alert alert-danger">
-                              Deseja excluir o cadastro?
+                              Deseja quitar a conta?
                               <hr>
                               <br />
-                              <?php echo 'Nome: ' . $pessoa->nm_pessoa ?>
+                              <?php echo 'Responsável: ' . $contaPagar->nm_responsavel ?>
                               <br />
-                              <?php echo 'Endereço: ' . $pessoa->nm_rua ?>
+                              <?php echo 'Descrição: ' . $contaPagar->ds_pagamento ?>
                               <br />
-                              <?php echo 'Tipo: ' . $pessoa->tp_pessoa ?>
+                              <?php echo 'Centro de custo: ' . $contaPagar->ds_centroCusto ?>
+                              <br />
+                              <?php echo 'Valor: ' . $contaPagar->nr_valorParcela ?>
+                              <br />
+                              <?php echo 'Vencimento: ' . $contaPagar->dt_vencimento ?>
                             </div>
                         </div>
                 </form>

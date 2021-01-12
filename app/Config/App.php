@@ -21,7 +21,7 @@ class App extends BaseConfig
 	| environments.
 	|
 	*/
-	public $baseURL = 'http://localhost/gestaoimob/';
+	public $baseURL = 'https://www.imob.aj2imoveiscallegaro.com.br';
 
 	/*
 	|--------------------------------------------------------------------------

@@ -24,6 +24,17 @@
                             <input type="hidden" name="id" value="<?php echo $id_contaReceber;?>" />
                             <div class="alert alert-danger">
                               Deseja excluir o registro?
+                              <hr>
+                              <br />
+                              <?php echo 'Responsável: ' . $contaReceber->nm_responsavel ?>
+                              <br />
+                              <?php echo 'Descrição: ' . $contaReceber->ds_recebimento ?>
+                              <br />
+                              <?php echo 'Centro de custo: ' . $contaReceber->ds_centroCusto ?>
+                              <br />
+                              <?php echo 'Valor: ' . $contaReceber->nr_valorParcela ?>
+                              <br />
+                              <?php echo 'Vencimento: ' . $contaReceber->dt_vencimento ?>
                             </div>
                         </div>
                 </form>

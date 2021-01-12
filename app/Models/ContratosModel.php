@@ -6,8 +6,8 @@ class ContratosModel extends Model {
     protected $table = 'tb_contratos';
     protected $primaryKey = 'id_contrato';
     protected $allowedFields = [
-        'tp_contrato', 'nm_inquilino', 'nm_proprietario', 'nm_fiador', 'ds_imovel', 'dt_contrato',
-        'nm_vendedor', 'st_contrato', 'nr_valor', 'dt_vencimento', 'ds_observacao'
+        'tp_contrato', 'nm_inquilino', 'nm_inquilino2', 'nm_inquilino3', 'nm_proprietario', 'nm_proprietario2', 'nm_proprietario3', 'ds_imovel', 'dt_contrato',
+        'nm_corretorResponsavel', 'st_contrato', 'nr_valor', 'dt_vencimento', 'ds_observacao', 'nm_fiador', 'nm_fiador2', 'nm_fiador3', 'tp_garantia'
     ];
     protected $returnType = 'object';
 

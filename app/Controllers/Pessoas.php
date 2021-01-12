@@ -18,8 +18,8 @@ class PessoaS extends BaseController
 	{
         $pessoasModel = new \App\Models\PessoasModel();
         $data['proprietarios'] = $pessoasModel->listarProprietarios();
-        $data['titulo'] = 'IMob - Proprietários';
-        $data['acao'] = 'Adicionar proprietário';
+        $data['titulo'] = 'IMob - Locador';
+        $data['acao'] = 'Adicionar locador';
         $data['msg'] = $this->session->getFlashdata('msg');
 		return view('view_proprietario_listar', $data);
     }
@@ -28,8 +28,8 @@ class PessoaS extends BaseController
 	{
         $pessoasModel = new \App\Models\PessoasModel();
         $data['inquilinos'] = $pessoasModel->listarInquilinos();
-        $data['titulo'] = 'IMob - Inquilino';
-        $data['acao'] = 'Adicionar inquilino';
+        $data['titulo'] = 'IMob - Locatário';
+        $data['acao'] = 'Adicionar locatário';
         $data['msg'] = $this->session->getFlashdata('msg');
 		return view('view_inquilino_listar', $data);
     }
@@ -137,6 +137,8 @@ class PessoaS extends BaseController
             $this->session->setFlashdata('msg', 'Item não encontrado');
             return redirect()->to(base_url('principal'));
         }
+        $pessoasModel = new \App\Models\PessoasModel();
+        $data['pessoa'] = $pessoasModel->find($id_pessoa);
         $data['id_pessoa'] = $id_pessoa;
         $data['titulo'] = 'IMob - Cadastros';
         return view('view_delete_pessoa', $data);

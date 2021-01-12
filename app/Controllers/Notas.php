@@ -36,6 +36,7 @@ class Notas extends BaseController
             $notas->set('ds_nota', $this->request->getPost('ds_nota'));
             $notas->set('nm_responsavel', $this->request->getPost('nm_responsavel'));
             $notas->set('tp_nota', $this->request->getPost('tp_nota'));
+            $notas->set('dt_data', $this->request->getPost('dt_data'));
             
             if($notas->insert()) {
                 //deu certo

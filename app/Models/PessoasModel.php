@@ -15,7 +15,7 @@ class PessoasModel extends Model {
     public function listarProprietarios() {
         $db = db_connect();
         $builder = $db->table('tb_pessoas p');
-        $builder->where('p.tp_pessoa', 'proprietario');
+        $builder->where('p.tp_pessoa', 'locador');
         $query = $builder->get();
         return $query->getResultObject();
     }
@@ -23,7 +23,7 @@ class PessoasModel extends Model {
     public function listarInquilinos() {
         $db = db_connect();
         $builder = $db->table('tb_pessoas p');
-        $builder->where('p.tp_pessoa', 'inquilino');
+        $builder->where('p.tp_pessoa', 'locatario');
         $query = $builder->get();
         return $query->getResultObject();
     }

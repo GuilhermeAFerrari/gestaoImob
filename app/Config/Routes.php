@@ -57,6 +57,11 @@ $routes->add('financeiro-conta', 'Financeiro::adicionarContaBancaria');
 $routes->add('financeiro-confirmar-deletar-conta-bancaria/(:num)', 'Financeiro::confirmarExcluirContaBancaria/$1');
 $routes->add('financeiro-deletar-conta-bancaria/(:num)', 'Financeiro::excluirContaBancaria/$1');
 $routes->add('financeiro-resumo', 'Financeiro::resumoFinanceiro');
+$routes->add('financeiro-resumo-centro-de-custo', 'Financeiro::resumoFinanceiroCentroCusto');
+$routes->add('financeiro-confirmar-quitar-receber/(:num)', 'Financeiro::confirmarQuitarFinanceiroReceber/$1');
+$routes->add('financeiro-quitar-receber/(:num)', 'Financeiro::quitarFinanceiroReceber/$1');
+$routes->add('financeiro-confirmar-quitar-pagar/(:num)', 'Financeiro::confirmarQuitarFinanceiroPagar/$1');
+$routes->add('financeiro-quitar-pagar/(:num)', 'Financeiro::quitarFinanceiroPagar/$1');
 
 // rotas imovel
 $routes->get('cadastros-imovel', 'Imoveis::listarImoveis');
@@ -99,7 +104,7 @@ $routes->add('cadastros-contratos', 'Contratos::cadastrarContratos');
 $routes->get('contratos-ativo', 'Contratos::listarAtivos');
 $routes->get('contratos-pendente', 'Contratos::listarPendentes');
 $routes->get('contratos-encerrado', 'Contratos::listarEncerrados');
-
+$routes->get('contratos-visualizar/(:num)', 'Contratos::visualizar/$1');
 /**
  * --------------------------------------------------------------------
  * Additional Routing

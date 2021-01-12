@@ -63,15 +63,22 @@ class Contratos extends BaseController
             $contrato = new \App\Models\ContratosModel();
             $contrato->set('tp_contrato', $this->request->getPost('tp_contrato'));
             $contrato->set('nm_inquilino', $this->request->getPost('nm_inquilino'));
+            $contrato->set('nm_inquilino2', $this->request->getPost('nm_inquilino2'));
+            $contrato->set('nm_inquilino3', $this->request->getPost('nm_inquilino3'));
             $contrato->set('nm_proprietario', $this->request->getPost('nm_proprietario'));
+            $contrato->set('nm_proprietario2', $this->request->getPost('nm_proprietario2'));
+            $contrato->set('nm_proprietario3', $this->request->getPost('nm_proprietario3'));
             $contrato->set('nm_fiador', $this->request->getPost('nm_fiador'));
+            $contrato->set('nm_fiador2', $this->request->getPost('nm_fiador2'));
+            $contrato->set('nm_fiador3', $this->request->getPost('nm_fiador3'));
             $contrato->set('ds_imovel', $this->request->getPost('ds_imovel'));
             $contrato->set('dt_contrato', $this->request->getPost('dt_contrato'));
-            $contrato->set('nm_vendedor', $this->request->getPost('nm_vendedor'));
+            $contrato->set('nm_corretorResponsavel', $this->request->getPost('nm_corretorResponsavel'));
             $contrato->set('st_contrato', $this->request->getPost('st_contrato'));
             $contrato->set('nr_valor', $this->request->getPost('nr_valor'));
             $contrato->set('dt_vencimento', $this->request->getPost('dt_vencimento'));
             $contrato->set('ds_observacao', $this->request->getPost('ds_observacao'));
+            $contrato->set('tp_garantia', $this->request->getPost('tp_garantia'));
             
             if($contrato->insert()) {
                 //deu certo
@@ -84,5 +91,12 @@ class Contratos extends BaseController
             }
 		}
 		return view('view_contratos_adicionar', $data);
+	}
+	
+	public function visualizar($id_contrato) {
+	    $contratosModel = new \App\Models\ContratosModel();
+        $data['contratos'] = $contratosModel->find($id_contrato);
+        $data['titulo'] = 'IMob - Visualizar contrato';
+		return view('view_contratos_visualizar', $data);
 	}
 }

@@ -8,28 +8,26 @@
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
+    
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Tipo', 'Valor'],
           <?php
-            if(isset($resultadoPagar)) {
-              foreach($resultadoPagar as $p){
-                echo '["Contas à pagar - ' . $p['SUM(nr_valorParcela)'] . '" ,' . $p['SUM(nr_valorParcela)'] . '],';
-              }
-              foreach($resultadoReceber as $r){
-                echo '["Contas à receber - ' . $p['SUM(nr_valorParcela)'] . '" ,' . $r['SUM(nr_valorParcela)'] . '],';
+            if(isset($resultado)) {
+              foreach($resultado as $r){
+                echo '["'. $r["ds_centroCusto"] . ' - ' . $r["SUM(nr_valorParcela)"] . '" ,' . $r["SUM(nr_valorParcela)"] . '],';
               }
             }
             else {
-              echo '["Selecione data DE e ATE",' . 1 . ']';
+              echo '["Selecione data DE e ATE + Filtro (receber ou pagar)",' . 1 . ']';
             }
           ?>
         ]);
 
         var options = {
-          title: 'Resumo Financeiro',
+          title: 'Resumo Financeiro - centro de custo',
           pieHole: 0.4,
         };
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
@@ -40,7 +38,7 @@
 <?php echo $this->include('view_menu'); ?>
     <div class="card" style="margin-top: 56px">
         <div class="card-header">
-            <h5>Financeiro - Resumo de contas</h5>
+            <h5>Financeiro - Resumo de contas por centro de custo</h5>
         </div>
     </div>
     <form class="form-horizontal" method="post">
@@ -61,6 +59,19 @@
               </div>
           </div>
         </div>
+        
+        <div style="margin-top: 32px">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="radioPagar">
+                <label class="form-check-label">Contas a pagar</label>
+            </div>
+            
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="radioReceber">
+                <label class="form-check-label">Contas a receber</label>
+            </div>
+        </div>
+        
         <div class="col-sm-3">
           <div class="controls" style="margin-top: 24px">
             <button type="submit" value="<?php echo $acao ?>" class="btn btn-success"><?php echo $acao ?></button>

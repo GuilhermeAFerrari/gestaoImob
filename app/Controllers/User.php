@@ -66,7 +66,7 @@ class User extends BaseController
             //quando o form for submetido
             $user->nm_user = $this->request->getPost('nm_user');
             $user->ds_login = $this->request->getPost('ds_login');
-            $user->ds_password = $this->request->getPost('ds_password');
+            $user->ds_password = MD5($this->request->getPost('ds_password'));
             $user->tp_user = $this->request->getPost('tp_user');
             $user->st_user = 'Ativo';
 

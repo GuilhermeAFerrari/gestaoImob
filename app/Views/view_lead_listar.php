@@ -4,7 +4,7 @@
     <title><?php echo $titulo ?></title>
 </head>
     <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">-->
-    <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+    <script src="assets/js/jquery.js"></script>
 <body>
 <?php echo $this->include('view_menu'); ?>
 <div class="card" style="margin-top: 56px">
@@ -42,7 +42,6 @@
                     <th scope="col">Nome</th>
                     <th scope="col">E-mail</th>
                     <th scope="col">Telefone primário</th>
-                    <th scope="col">Telefone secundário</th>
                     <th scope="col" class="endereco">Rua</th>
                     <th scope="col" class="endereco">Número</th>
                     <th scope="col" class="endereco">Bairro</th>
@@ -71,7 +70,6 @@
                         <th scope="row"><?php echo $lead->nm_pessoa ?></th>
                         <td><?php echo $lead->ds_email ?></td>
                         <td><?php echo $lead->nr_telefone1 ?></td>
-                        <td><?php echo $lead->nr_telefone2 ?></td>
                         <td><?php echo $lead->nm_rua ?></td>
                         <td><?php echo $lead->nr_numero ?></td>
                         <td><?php echo $lead->nm_bairro ?></td>

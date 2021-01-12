@@ -1,7 +1,7 @@
 <head>
 	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
 	<script src="assets/js/bootstrap.min.js"></script>
-	<script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+	<script src="assets/js/jquery.js"></script>
 </head>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 <a class="navbar-brand" href="<?php echo base_url('principal') ?>" style="color:white">
@@ -26,8 +26,8 @@
 			</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="<?php echo base_url('cadastros-proprietario') ?>">Proprietário</a>
-            <a class="dropdown-item" href="<?php echo base_url('cadastros-inquilino') ?>">Inquilino</a>
+            <a class="dropdown-item" href="<?php echo base_url('cadastros-proprietario') ?>">Locador</a>
+            <a class="dropdown-item" href="<?php echo base_url('cadastros-inquilino') ?>">Locatário</a>
 			<a class="dropdown-item" href="<?php echo base_url('cadastros-fiador') ?>">Fiador</a>
 			<a class="dropdown-item" href="<?php echo base_url('cadastros-lead') ?>">Leads</a>
 			<a class="dropdown-item" href="<?php echo base_url('cadastros-imovel') ?>">Imóveis</a>
@@ -96,7 +96,8 @@
             <a class="dropdown-item" href="<?php echo base_url('contratos-pendente') ?>">Contratos pendentes</a>
 			<a class="dropdown-item" href="<?php echo base_url('contratos-ativo') ?>">Contratos ativos</a>
 			<a class="dropdown-item" href="<?php echo base_url('contratos-encerrado') ?>">Contratos encerrados</a>
-			<a class="dropdown-item" href="<?php echo base_url('financeiro-resumo') ?>">Financeiro</a>
+			<a class="dropdown-item" href="<?php echo base_url('financeiro-resumo') ?>">Fluxo de caixa - Resumo</a>
+			<a class="dropdown-item" href="<?php echo base_url('financeiro-resumo-centro-de-custo') ?>">Fluxo de caixa - Centro de custo</a>
           </div>
         </li>
 

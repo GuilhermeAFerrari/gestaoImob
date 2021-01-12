@@ -3,7 +3,7 @@
 <head>
     <title><?php echo $titulo ?></title>
 </head>
-    <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+    <script src="assets/js/jquery.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <body>
 <?php echo $this->include('view_menu'); ?>
@@ -32,8 +32,8 @@
                 <div class="col-sm-12">
                     <div class="form-actions">
                         <button type="submit" value="<?php echo $acao ?>"class="btn btn-success"><?php echo $acao ?></button>
-                        <a href="<?php echo base_url('cadastros-proprietario') ?>" type="btn" class="btn btn-secondary">Proprietários</a>
-                        <a href="<?php echo base_url('cadastros-inquilino') ?>" type="btn" class="btn btn-secondary">Inquilinos</a>
+                        <a href="<?php echo base_url('cadastros-proprietario') ?>" type="btn" class="btn btn-secondary">Locadores</a>
+                        <a href="<?php echo base_url('cadastros-inquilino') ?>" type="btn" class="btn btn-secondary">Locatários</a>
                         <a href="<?php echo base_url('cadastros-fiador') ?>" type="btn" class="btn btn-secondary">Fiadores</a>
                         <a href="<?php echo base_url('cadastros-lead') ?>" type="btn" class="btn btn-secondary">Leads</a>
                     </div>
@@ -133,8 +133,8 @@
                         <div class="controls">
                             <select class="custom-select mr-sm-2" name="tp_pessoa" required="">
                                 <option value=""></option>
-                                <option value="proprietario">Proprietário</option>
-                                <option value="inquilino">Inquilino</option>
+                                <option value="locador">Locador</option>
+                                <option value="locatario">Locatário</option>
                                 <option value="fiador">Fiador</option>
                                 <option value="lead">Lead</option>
                             </select>

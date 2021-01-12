@@ -24,6 +24,17 @@
                             <input type="hidden" name="id" value="<?php echo $id_contaPagar;?>" />
                             <div class="alert alert-danger">
                               Deseja excluir o registro?
+                              <hr>
+                              <br />
+                              <?php echo 'Responsável: ' . $contaPagar->nm_responsavel ?>
+                              <br />
+                              <?php echo 'Descrição: ' . $contaPagar->ds_pagamento ?>
+                              <br />
+                              <?php echo 'Centro de custo: ' . $contaPagar->ds_centroCusto ?>
+                              <br />
+                              <?php echo 'Valor: ' . $contaPagar->nr_valorParcela ?>
+                              <br />
+                              <?php echo 'Vencimento: ' . $contaPagar->dt_vencimento ?>
                             </div>
                         </div>
                 </form>

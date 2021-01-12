@@ -4,7 +4,7 @@
     <title><?php echo $titulo ?></title>
 </head>
     <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">-->
-    <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+    <script src="assets/js/jquery.js"></script>
 <body>
 <?php echo $this->include('view_menu'); ?>
 <div class="card" style="margin-top: 56px">
@@ -40,6 +40,7 @@
                             white-space: pre;">
                     <th scope="col">Ações</th>
                     <th scope="col">Anotação</th>
+                    <th scope="col">Data</th>
                     <th scope="col">Responsável</th>
                     <th scope="col">Tipo</th>
                 </tr>
@@ -56,6 +57,7 @@
                             </a>
                         </td>
                         <td><?php echo $nota->ds_nota ?></td>
+                        <td><?php echo $nota->dt_data ?></td>
                         <th scope="row"><?php echo $nota->nm_responsavel ?></th>
                         <th scope="row"><?php echo $nota->tp_nota ?></th>
                     </tr>

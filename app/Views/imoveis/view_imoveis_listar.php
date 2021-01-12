@@ -4,7 +4,7 @@
     <title><?php echo $titulo ?></title>
 </head>
     <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">-->
-    <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+    <script src="assets/js/jquery.js"></script>
 <body>
 <?php echo $this->include('view_menu'); ?>
 <div class="card" style="margin-top: 56px">
@@ -51,6 +51,10 @@
                     <th scope="col">Área total</th>
                     <th scope="col">Tipo de negócio</th>
                     <th scope="col">Valor</th>
+                    <th scope="col">Cód CPFL</th>
+                    <th scope="col">Cód GÁS</th>
+                    <th scope="col">Matrícula</th>
+                    <th scope="col">Medidor</th>
                 </tr>
             </thead>
             <tbody>
@@ -81,6 +85,10 @@
                         <td><?php echo $imovel->nr_areaTotal ?></td>
                         <td><?php echo $imovel->tp_negocio ?></td>
                         <td><?php echo $imovel->nr_valor ?></td>
+                        <td><?php echo $imovel->ds_codCpfl ?></td>
+                        <td><?php echo $imovel->ds_codGas ?></td>
+                        <td><?php echo $imovel->ds_numMatricula ?></td>
+                        <td><?php echo $imovel->nm_medidor ?></td>
                     </tr>
                 <?php endforeach ?>
             </tbody>

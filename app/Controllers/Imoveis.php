@@ -21,11 +21,13 @@ class Imoveis extends BaseController
         $data['titulo'] = 'IMob - Imóveis';
         $data['acao'] = 'Adicionar imóvel';
         $data['msg'] = $this->session->getFlashdata('msg');
-		return view('imoveis\view_imoveis_listar', $data);
+		return view('imoveis/view_imoveis_listar', $data);
     }
     
     public function adicionarImoveis()
 	{
+        $pessoas = new \App\Models\PessoasModel();
+        $data['proprietarios'] = $pessoas->listarProprietarios();
         $data['titulo'] = 'IMob - Imóveis';
 		$data['acao'] = 'Salvar';
 		$data['msg'] = '';
@@ -45,6 +47,10 @@ class Imoveis extends BaseController
             $imoveis->set('nr_areaTotal', $this->request->getPost('nr_areaTotal'));
             $imoveis->set('tp_negocio', $this->request->getPost('tp_negocio'));
             $imoveis->set('nr_valor', $this->request->getPost('nr_valor'));
+            $imoveis->set('ds_codCpfl', $this->request->getPost('ds_codCpfl'));
+            $imoveis->set('ds_codGas', $this->request->getPost('ds_codGas'));
+            $imoveis->set('ds_numMatricula', $this->request->getPost('ds_numMatricula'));
+            $imoveis->set('nm_medidor', $this->request->getPost('nm_medidor'));
             
             if($imoveis->insert()) {
                 //deu certo
@@ -56,7 +62,7 @@ class Imoveis extends BaseController
                 $data['erros'] = $imoveis->errors();
             }
 		}
-		return view('imoveis\view_imoveis_adicionar', $data);
+		return view('imoveis/view_imoveis_adicionar', $data);
 	}
 
     public function editarImoveis($id_imovel)
@@ -67,6 +73,8 @@ class Imoveis extends BaseController
         $data['erros'] = '';
 
         $imoveisModel = new \App\Models\ImoveisModel();
+        $pessoas = new \App\Models\PessoasModel();
+        $data['proprietarios'] = $pessoas->listarProprietarios();
         $imovel = $imoveisModel->find($id_imovel);
 
         if($this->request->getMethod() === 'post') {
@@ -83,6 +91,10 @@ class Imoveis extends BaseController
             $imovel->nr_areaTotal = $this->request->getPost('nr_areaTotal');
             $imovel->tp_negocio = $this->request->getPost('tp_negocio');
             $imovel->nr_valor = $this->request->getPost('nr_valor');
+            $imovel->ds_codCpfl = $this->request->getPost('ds_codCpfl');
+            $imovel->ds_codGas = $this->request->getPost('ds_codGas');
+            $imovel->ds_numMatricula = $this->request->getPost('ds_numMatricula');
+            $imovel->nm_medidor = $this->request->getPost('nm_medidor');
 
             if($imoveisModel->update($id_imovel, $imovel)) {
                 $data['msg'] = 'Alterado com sucesso';
@@ -94,7 +106,7 @@ class Imoveis extends BaseController
         }
 
         $data['imovel'] = $imovel;
-        return view('imoveis\view_imoveis_adicionar', $data);
+        return view('imoveis/view_imoveis_adicionar', $data);
 	}
 
 	public function confirmarExcluirImovel($id_imovel)
@@ -107,7 +119,7 @@ class Imoveis extends BaseController
         }
         $data['id_imovel'] = $id_imovel;
         $data['titulo'] = 'IMob - Imóveis';
-        return view('imoveis\view_delete_imovel', $data);
+        return view('imoveis/view_delete_imovel', $data);
     }
 	
 	public function excluirImoveis($id_imovel = null)

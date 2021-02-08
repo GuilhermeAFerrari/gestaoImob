@@ -8,7 +8,7 @@ class ContasPagarModel extends Model {
     protected $allowedFields = [
         'nm_responsavel', 'ds_pagamento', 'ds_centroCusto', 'dt_vencimento', 'ds_formaPagamento',
         'ds_contaBancaria', 'ds_quitado', 'dt_registro', 'ds_observacao', 'nr_comissao', 'nr_valorParcela',
-        'nr_qtParcela', 'nr_numeroParcela', 'nr_diferencaDias'
+        'nr_qtParcela', 'nr_numeroParcela', 'nr_diferencaDias', 'dt_quitado'
     ];
     protected $returnType = 'object';
 
@@ -29,9 +29,16 @@ class ContasPagarModel extends Model {
     
     public function somaPagarDataCentroCusto($de, $ate) {
         $db = db_connect();
-        $query = $db->query("SELECT ds_centroCusto, SUM(nr_valorParcela) FROM tb_contaspagar
-        WHERE dt_vencimento between '{$de}' and '{$ate}' AND ds_quitado = 'Nao' GROUP BY ds_centroCusto");
+        $query = $db->query("SELECT ds_centroCusto, SUM(nr_valorParcela) FROM tb_contaspagar WHERE dt_vencimento between
+        '{$de}' and '{$ate}' AND ds_quitado = 'Nao' GROUP BY ds_centroCusto");
         return $query->getResultArray();
+    }
+    
+    public function listarPagarPorData($de, $ate) {
+        $db = db_connect();
+        $query = $db->query("SELECT * FROM tb_contaspagar
+        WHERE dt_vencimento between '{$de}' and '{$ate}' AND ds_quitado = 'Nao'");
+        return $query->getResultObject();
     }
     
     public function listarPorResponsavel() {

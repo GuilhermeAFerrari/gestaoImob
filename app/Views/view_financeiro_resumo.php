@@ -19,7 +19,7 @@
                 echo '["Contas à pagar - ' . $p['SUM(nr_valorParcela)'] . '" ,' . $p['SUM(nr_valorParcela)'] . '],';
               }
               foreach($resultadoReceber as $r){
-                echo '["Contas à receber - ' . $p['SUM(nr_valorParcela)'] . '" ,' . $r['SUM(nr_valorParcela)'] . '],';
+                echo '["Contas à receber - ' . $r['SUM(nr_valorParcela)'] . '" ,' . $r['SUM(nr_valorParcela)'] . '],';
               }
             }
             else {

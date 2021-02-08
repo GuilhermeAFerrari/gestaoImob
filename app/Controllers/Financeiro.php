@@ -45,7 +45,7 @@ class Financeiro extends BaseController
                 for($i = 0; $i <$quantidadeDeParcela; $i++) {
                     $pagamento = new \App\Models\ContasPagarModel();
                     $pagamento->set('nm_responsavel', $this->request->getPost('nm_responsavel'));
-                    $pagamento->set('ds_recebimento', $this->request->getPost('ds_recebimento'));
+                    $pagamento->set('ds_pagamento', $this->request->getPost('ds_pagamento'));
                     $pagamento->set('ds_centroCusto', $this->request->getPost('ds_centroCusto'));
                     $pagamento->set('dt_vencimento', date('Y-m-d', strtotime("$somaDias days",strtotime($dataVencimento))));
                     $pagamento->set('nr_numeroParcela', $i+1);
@@ -138,6 +138,43 @@ class Financeiro extends BaseController
 
         $data['contas'] = $conta;
         return view('view_financeiro_pagamentos', $data);
+    }
+    
+        public function ajustePagar($id_contaPagar) {
+        
+		$contasPagar = new \App\Models\ContasPagarModel();
+        $conta = $contasPagar->find($id_contaPagar);
+        $data['titulo'] = 'IMob - Pagamentos';
+        $data['acao'] = 'Alterar valor';
+        
+        if($this->request->getMethod() === 'post') {
+            if(isset($contas->nr_valorBruto)){
+                $conta->nr_valorBruto = $this->request->getPost('nr_valorBruto');
+                
+                if($contasPagar->update($id_contaPagar, $conta)) {
+                    $data['msg'] = 'Alterado com sucesso';
+                }
+                else {
+                    $data['msg'] = 'Erro ao alterar';
+                    $data['erros'] = $contasPagar->errors();
+                }
+            }
+            else {
+                $conta->nr_valorParcela = $this->request->getPost('nr_valorParcela');
+                
+                if($contasPagar->update($id_contaPagar, $conta)) {
+                    $data['msg'] = 'Alterado com sucesso';
+                }
+                else {
+                    $data['msg'] = 'Erro ao alterar';
+                    $data['erros'] = $contasPagar->errors();
+                }
+            }
+        }
+        
+        $data['contas'] = $conta;
+        return view('view_financeiro_ajusteValor_pagar', $data);
+        
     }
     
 	public function confirmarExcluirPagamentos($id_contaPagar)
@@ -304,6 +341,43 @@ class Financeiro extends BaseController
         $data['contas'] = $conta;
         return view('view_financeiro_recebimentos', $data);
     }
+    
+    public function ajusteReceber($id_contaReceber) {
+        
+        $contasReceber = new \App\Models\ContasReceberModel();
+        $conta = $contasReceber->find($id_contaReceber);
+        $data['titulo'] = 'IMob - Recebimentos';
+        $data['acao'] = 'Alterar valor';
+        
+        if($this->request->getMethod() === 'post') {
+            if(isset($contas->nr_valorBruto)){
+                $conta->nr_valorBruto = $this->request->getPost('nr_valorBruto');
+                
+                if($contasReceber->update($id_contaReceber, $conta)) {
+                    $data['msg'] = 'Alterado com sucesso';
+                }
+                else {
+                    $data['msg'] = 'Erro ao alterar';
+                    $data['erros'] = $contasReceber->errors();
+                }
+            }
+            else {
+                $conta->nr_valorParcela = $this->request->getPost('nr_valorParcela');
+                
+                if($contasReceber->update($id_contaReceber, $conta)) {
+                    $data['msg'] = 'Alterado com sucesso';
+                }
+                else {
+                    $data['msg'] = 'Erro ao alterar';
+                    $data['erros'] = $contasReceber->errors();
+                }
+            }
+        }
+        
+        $data['contas'] = $conta;
+        return view('view_financeiro_ajusteValor_receber', $data);
+        
+    }
 
     public function confirmarExcluirRecebimentos($id_contaReceber)
 	{
@@ -372,6 +446,7 @@ class Financeiro extends BaseController
         $conta = $contasReceber->find($id_contaReceber);
 
         $conta->ds_quitado = 'Sim';
+        $conta->dt_quitado = date("Y-m-d H:i:s");
         if($contasReceber->update($id_contaReceber, $conta)) {
             $this->session->setFlashdata('msg', 'Quitado com sucesso');
             return redirect()->to(base_url('financeiro-recebimentos-listar'));
@@ -412,6 +487,7 @@ class Financeiro extends BaseController
         $conta = $contasPagar->find($id_contaPagar);
 
         $conta->ds_quitado = 'Sim';
+        $conta->dt_quitado = date("Y-m-d H:i:s");
         if($contasPagar->update($id_contaPagar, $conta)) {
             $this->session->setFlashdata('msg', 'Quitado com sucesso');
             return redirect()->to(base_url('financeiro-pagamentos-listar'));
@@ -653,7 +729,27 @@ class Financeiro extends BaseController
 		return view('view_financeiro_resumo_centro_custo', $data);
     }
     
-    public function calculoResumoFinanceiro() {
+    public function resumoDiario()
+	{
+        $data['titulo'] = 'IMob - Resumo diário';
+        $data['acao'] = 'Filtrar';
 
+        if($this->request->getMethod() == 'post') {
+            $de = $this->request->getPost('dt_inicio');
+            $ate = $this->request->getPost('dt_fim');
+
+            $pagar = new \App\Models\ContasPagarModel();
+            $resultadoPagar = $pagar->listarPagarPorData($de, $ate);
+            
+            $receber = new \App\Models\ContasReceberModel();
+            $resultadoReceber = $receber->listarReceberPorData($de, $ate);
+            
+            $data['resultadoP'] = $resultadoPagar;
+            $data['resultadoR'] = $resultadoReceber;
+            $data['de'] = $de;
+            $data['ate'] = $ate;
+		}
+
+		return view('view_financeiro_resumo_diario', $data);
     }
 }

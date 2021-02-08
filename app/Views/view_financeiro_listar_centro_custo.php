@@ -27,13 +27,13 @@
     <?php } ?>
 
     <div class="col-sm-12">
-        <div class="form-actions" style="margin-top: 12px">
+        <div class="form-actions" style="margin-top: 12px;">
         <a href="<?php echo base_url('financeiro-centro-custo') ?>" type="btn" class="btn btn-primary">Adicionar centro de custo</a>
         </div>
         <br/>
     </div>
 
-    <div class="table-sm" style="margin: 10px">
+    <div class="table-sm" style="margin: 10px; font-size:12px !important">
         <table id="tabela" class="table">
             <thead>
                 <tr style="text-align: center;

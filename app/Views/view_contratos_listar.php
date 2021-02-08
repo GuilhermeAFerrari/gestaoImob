@@ -26,7 +26,7 @@
     </div>
     <?php } ?>
 
-    <div class="table-sm" style="margin: 10px">
+    <div class="table-sm" style="margin: 10px; font-size:12px !important">
         <table id="tabela" class="table">
             <thead>
                 <tr style="text-align: center;

@@ -62,6 +62,9 @@ $routes->add('financeiro-confirmar-quitar-receber/(:num)', 'Financeiro::confirma
 $routes->add('financeiro-quitar-receber/(:num)', 'Financeiro::quitarFinanceiroReceber/$1');
 $routes->add('financeiro-confirmar-quitar-pagar/(:num)', 'Financeiro::confirmarQuitarFinanceiroPagar/$1');
 $routes->add('financeiro-quitar-pagar/(:num)', 'Financeiro::quitarFinanceiroPagar/$1');
+$routes->add('financeiro-ajuste-pagar/(:num)', 'Financeiro::ajustePagar/$1');
+$routes->add('financeiro-ajuste-receber/(:num)', 'Financeiro::ajusteReceber/$1');
+$routes->add('financeiro-resumo-diario', 'Financeiro::resumoDiario');
 
 // rotas imovel
 $routes->get('cadastros-imovel', 'Imoveis::listarImoveis');
@@ -99,7 +102,7 @@ $routes->add('cadastros-pessoas-editar/(:num)', 'Pessoas::editarPessoa/$1');
 $routes->add('cadastros-pessoas-confirmar-deletar/(:num)', 'Pessoas::confirmarExcluirPessoa/$1');
 $routes->add('cadastros-pessoas-deletar/(:num)', 'Pessoas::excluirPessoa/$1');
 
-//rotas contratos
+// rotas contratos
 $routes->add('cadastros-contratos', 'Contratos::cadastrarContratos');
 $routes->get('contratos-ativo', 'Contratos::listarAtivos');
 $routes->get('contratos-pendente', 'Contratos::listarPendentes');

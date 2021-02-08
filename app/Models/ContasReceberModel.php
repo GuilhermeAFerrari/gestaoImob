@@ -8,7 +8,7 @@ class ContasReceberModel extends Model {
     protected $allowedFields = [
         'nm_responsavel', 'ds_recebimento', 'ds_centroCusto', 'dt_vencimento', 'ds_formaPagamento',
         'ds_contaBancaria', 'ds_quitado', 'dt_registro', 'nr_qtParcela', 'nr_valorParcela',
-        'ds_observacao', 'nr_comissao', 'nr_diferencaDias', 'nr_numeroParcela'
+        'ds_observacao', 'nr_comissao', 'nr_diferencaDias', 'nr_numeroParcela', 'dt_quitado'
     ];
     protected $returnType = 'object';
 
@@ -32,6 +32,13 @@ class ContasReceberModel extends Model {
         $query = $db->query("SELECT ds_centroCusto, SUM(nr_valorParcela) FROM tb_contasreceber
         WHERE dt_vencimento between '{$de}' and '{$ate}' AND ds_quitado = 'Nao' GROUP BY ds_centroCusto");
         return $query->getResultArray();
+    }
+    
+    public function listarReceberPorData($de, $ate) {
+        $db = db_connect();
+        $query = $db->query("SELECT * FROM tb_contasreceber
+        WHERE dt_vencimento between '{$de}' and '{$ate}' AND ds_quitado = 'Nao'");
+        return $query->getResultObject();
     }
     
     public function listarPorResponsavel() {
